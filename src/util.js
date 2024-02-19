@@ -43,6 +43,7 @@ export const aniversariantesMes = [
     { mes: 5, dia: 4, nome: 'Régis Trentim' },
     { mes: 5, dia: 5, nome: 'Passivo Incipiente' },
     { mes: 5, dia: 9, nome: 'José Lima' },
+    { mes: 5, dia: 9, nome: 'Laura Mateus' },
     { mes: 5, dia: 22, nome: 'Mariana' },
 
     { mes: 6, dia: 16, nome: 'Camila B.' },
