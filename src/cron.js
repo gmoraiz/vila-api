@@ -41,4 +41,12 @@ export function initCron(bot) {
       await bot.telegram.sendMessage(process.env.VILA_ID, mensagem, { parse_mode: 'HTML' });
     }
   }, config);
+
+  cron.schedule('0 0 17 * * *', async () => {
+    log('[cron] enviando aniversariantes hoje pela segunda vez');
+    const mensagem = aniversarianteHoje();
+    if (mensagem) {
+      await bot.telegram.sendMessage(process.env.VILA_ID, mensagem, { parse_mode: 'HTML' });
+    }
+  }, config);
 }
