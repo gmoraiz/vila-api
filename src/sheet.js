@@ -1,7 +1,7 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { getHoje, getNumeroSemana } from "./util";
 
-async function getPlanilhaEscala() {
+async function getPlanilhaEscala(title = null) {
   const arquivo = new GoogleSpreadsheet(
     '1gcHWcCy1Oii-_a5pUQTuaVRa_VmLYx3-D4EJM2TVsGw',
     { apiKey: 'AIzaSyDPjLipcZjgXLCt4WUyux5F6IAWO8kZg6w' },
@@ -9,7 +9,7 @@ async function getPlanilhaEscala() {
 
   await arquivo.loadInfo();
 
-  return arquivo.sheetsByIndex[0];
+  return title ? arquivo.sheetsByTitle(title) : arquivo.sheetsByIndex[0];
 }
 
 function getDiaHojeIndex() {
@@ -18,7 +18,7 @@ function getDiaHojeIndex() {
 }
 
 async function getListaDias() {
-  const planilha = await getPlanilhaEscala();
+  const planilha = await getPlanilhaEscala('Semanal');
   const rows = await planilha.getRows();
 
   return rows.map((row, index) => {
