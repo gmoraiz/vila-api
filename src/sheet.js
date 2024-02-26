@@ -9,7 +9,7 @@ async function getPlanilhaEscala(title = null) {
 
   await arquivo.loadInfo();
 
-  return title ? arquivo.sheetsByTitle(title) : arquivo.sheetsByIndex[0];
+  return title ? arquivo.sheetsByTitle[title] : arquivo.sheetsByIndex[0];
 }
 
 function getDiaHojeIndex() {
@@ -26,10 +26,7 @@ async function getListaDias() {
     return listaDias.reduce((prev, curr) => {
       const [, dia] = curr.shift();
       const jornalistas = curr.map(([tipoJornalista, nomeJornalista]) => {
-        if (tipoJornalista === 'Editor') {
-          return `${nomeJornalista} (${tipoJornalista})`;
-        }
-        return nomeJornalista;
+        return `${nomeJornalista} (${tipoJornalista})`;
       }).join(', ');
 
       return {
