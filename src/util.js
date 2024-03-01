@@ -61,6 +61,8 @@ export const aniversariantesMes = [
     { mes: 7, dia: 1, nome: 'Pedro Arruda' },
     { mes: 7, dia: 7, nome: 'Yuri Milioli' },
     { mes: 7, dia: 10, nome: 'Sarah' },
+    { mes: 7, dia: 13, nome: 'Mestre Shifu' },
+    { mes: 7, dia: 19, nome: 'João Paulo Cardoso' },
     { mes: 7, dia: 28, nome: 'Gabriel Aleixo' },
 
     { mes: 8, dia: 6, nome: 'Bruno Soares' },
