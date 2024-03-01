@@ -3,7 +3,7 @@ import Fastify from 'fastify';
 import { Telegraf, Markup } from 'telegraf';
 import getHistory from './telegram-api';
 import { getEscalaDia, getEscalaSemanal } from './sheet';
-import { aniversariantesMes, getDiaHoje, getHoje } from './util';
+import { aniversariantesMes, getDiaHoje, getHoje, getMesHoje } from './util';
 import { initCron } from './cron';
 import saobento from './command/saobento';
 import log from './log';
@@ -39,8 +39,9 @@ const getAniversariantesMesTexto = (mes) => {
 	const aniversariantes = aniversariantesMes.filter((aniversariante) => aniversariante.mes === Number(mes));
 	const titulo = `<b>Aniversariantes do mês de ${nomeMes}:</b>\n`;
 	const diaHoje = getDiaHoje();
+	const mesHoje = getMesHoje();
 	const corpo = aniversariantes.reduce((prev, curr) => {
-		let sufixo = curr.dia === diaHoje ? ' 🎂🎂🎂' : '';
+		let sufixo = curr.dia === diaHoje && curr.mes === mesHoje ? ' 🎂🎂🎂' : '';
 		return prev.concat(`${curr.dia.toString().padStart(2, '0')} - ${curr.nome}${sufixo}\n`);
 	}, '');
 	return corpo ? titulo.concat(corpo) : `Nenhum ninja faz aniversário no mês de ${nomeMes} 😞`;
